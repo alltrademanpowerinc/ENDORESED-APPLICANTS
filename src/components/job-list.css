@@ -1,0 +1,44 @@
+/* Global plain CSS version of the JobList styles. Import this in your app's entry point to use global classes instead of CSS Modules. */
+:root{
+  --page-bg: #f3f6f7;
+  --content-bg: #ffffff;
+  --muted: #6b7d88;
+  --navy: #0f314b;
+  --navy-700: #0b2a3f;
+  --accent: #dff3ea;
+  --accent-border: #e6f3ea;
+  --pill-green-bg: #e8f6ec;
+  --pill-green-text: #1f6a44;
+  --pill-blue-bg: #eaf4fa;
+  --pill-blue-text: #1f4a66;
+  --card-shadow: 0 1px 0 rgba(11,23,30,0.06);
+  --container-max: 930px;
+  --radius: 10px;
+}
+
+.page { background: var(--page-bg); color: #17262f; min-height: 100vh; }
+.topbar{ background: linear-gradient(180deg, var(--navy) 0%, var(--navy-700) 100%); color: white; padding: 26px 0; box-shadow: inset 0 -1px rgba(255,255,255,0.02); }
+.wrap{ width: 92%; max-width: var(--container-max); margin: 24px auto; }
+.topbar h1 { margin:0; font-size:20px; font-weight:700; }
+.topbar p { margin:6px 0 0; color: rgba(255,255,255,0.9); font-size:13px; opacity:0.85; }
+.content { display:flex; gap:24px; }
+.main { flex: 1 1 720px; min-width: 0; }
+.callout { background: var(--accent); border: 1px solid var(--accent-border); border-radius: var(--radius); padding:18px 20px; margin-bottom:18px; color:#163c32; }
+.title { font-weight:700; display:inline-block; margin-bottom:6px; }
+.controls { margin-top:10px; display:flex; gap:12px; }
+.btn { display:inline-flex; align-items:center; gap:8px; border:0; cursor:pointer; padding:10px 16px; border-radius:8px; font-weight:600; font-size:14px; }
+.btn-primary { background: var(--navy); color:white; box-shadow: 0 1px 0 rgba(11,23,30,0.06); }
+.btn-ghost { background:white; color:var(--navy); border: 1px solid rgba(11,23,30,0.06); }
+.tabs { display:flex; gap:12px; margin:14px 0 18px; }
+.tab { background:white; border-radius:8px; padding:10px 14px; font-weight:700; color:var(--navy); border:1px solid rgba(11,23,30,0.04); box-shadow: 0 1px 0 rgba(11,23,30,0.06); }
+.active { background: var(--navy); color:white; }
+.jobList { display:flex; flex-direction:column; gap:14px; }
+.jobCard, .job-card { background: var(--content-bg); border-radius:12px; padding:18px; display:flex; align-items:center; justify-content:space-between; box-shadow: 0 1px 0 rgba(11,23,30,0.06), 0 6px 18px rgba(16,24,32,0.03); border: 1px solid rgba(11,23,30,0.03); }
+.job-left { display:flex; flex-direction:column; gap:8px; min-width:0; }
+.job-title { font-weight:700; color:#18314a; font-size:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.job-meta { color:var(--muted); font-size:13px; }
+.job-right { display:flex; gap:12px; align-items:center; }
+.pill { display:inline-block; padding:6px 10px; border-radius:999px; font-weight:600; font-size:13px; border:1px solid rgba(11,23,30,0.02); }
+.pill.green { background: var(--pill-green-bg); color: var(--pill-green-text); }
+.pill.blue { background: var(--pill-blue-bg); color: var(--pill-blue-text); }
+@media (max-width:900px){ .job-right { flex-direction:column; align-items:flex-end; } }
