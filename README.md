@@ -1,5 +1,5 @@
 # ENDORESED-APPLICANTS 
-rcc-hris-portal
+eats-hris-portal
 │
 ├── index.html
 ├── positions.html
