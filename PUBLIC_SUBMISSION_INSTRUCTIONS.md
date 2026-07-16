@@ -6,7 +6,7 @@ This publicly-published file explains how to submit a candidate or applicant. It
 This page explains how to submit a candidate or an application. It is published publicly so people without GitHub accounts can view it.
 
 ## How to submit
-1. Complete the submission form: <PUBLIC_FORM_URL>
+1. Complete the submission form: https://alltrademanpowerinc.github.io/ENDORESED-APPLICANTS-PUBLIC/apply
    - If you do not have a form, email submissions to: alltrademanpowerinc.recruitment@gmail.com
 2. Required information:
    - Candidate full name
