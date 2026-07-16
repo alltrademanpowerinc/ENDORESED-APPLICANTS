@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Job list UI example</title>
+<style>
+  :root{
+    --page-bg: #f3f6f7;
+    --content-bg: #ffffff;
+    --muted: #6b7d88;
+    --navy: #0f314b;
+    --navy-700: #0b2a3f;
+    --accent: #dff3ea; /* callout pale green */
+    --accent-border: #e6f3ea;
+    --pill-green-bg: #e8f6ec;
+    --pill-green-text: #1f6a44;
+    --pill-blue-bg: #eaf4fa;
+    --pill-blue-text: #1f4a66;
+    --card-shadow: 0 1px 0 rgba(11,23,30,0.06);
+    --container-max: 930px;
+    --radius: 10px;
+  }
+
+  html,body{
+    height:100%;
+    margin:0;
+    font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--page-bg);
+    color: #17262f;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* Top header bar */
+  .topbar{
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-700) 100%);
+    color: white;
+    padding: 26px 0;
+    box-shadow: inset 0 -1px rgba(255,255,255,0.02);
+  }
+  .topbar .wrap{
+    width: 92%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
+  .topbar h1{
+    margin:0;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .topbar p{
+    margin:6px 0 0;
+    color: rgba(255,255,255,0.9);
+    font-size: 13px;
+    opacity:0.85;
+  }
+
+  /* Page content (centered column) */
+  .wrap{
+    width: 92%;
+    max-width: var(--container-max);
+    margin: 24px auto;
+  }
+
+  .content{
+    display:flex;
+    gap:24px;
+  }
+
+  /* main column */
+  .main{
+    flex: 1 1 720px;
+    min-width: 0;
+  }
+
+  /* callout */
+  .callout{
+    background: var(--accent);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    color: #163c32;
+  }
+  .callout .title{
+    font-weight:700;
+    display:inline-block;
+    margin-bottom:6px;
+  }
+  .callout .controls{
+    margin-top:10px;
+    display:flex;
+    gap:12px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:0;
+    cursor:pointer;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:600;
+    font-size:14px;
+  }
+  .btn-primary{
+    background: var(--navy);
+    color:white;
+    box-shadow: 0 1px 0 rgba(11,23,30,0.06);
+  }
+  .btn-ghost{
+    background: white;
+    color: var(--navy);
+    border: 1px solid rgba(11,23,30,0.06);
+  }
+
+  /* tabs */
+  .tabs{
+    display:flex;
+    gap:12px;
+    margin: 14px 0 18px;
+  }
+  .tab{
+    background: white;
+    border-radius: 8px;
+    padding:10px 14px;
+    font-weight: 700;
+    color: var(--navy);
+    border: 1px solid rgba(11,23,30,0.04);
+    box-shadow: var(--card-shadow);
+  }
+  .tab.active{
+    background: var(--navy);
+    color: white;
+  }
+
+  /* job list */
+  .job-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .job-card{
+    background: var(--content-bg);
+    border-radius: 12px;
+    padding: 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow: 0 1px 0 rgba(11,23,30,0.06), 0 6px 18px rgba(16,24,32,0.03);
+    border: 1px solid rgba(11,23,30,0.03);
+  }
+
+  .job-left{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    min-width: 0;
+  }
+  .job-title{
+    font-weight:700;
+    color:#18314a;
+    font-size:16px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .job-meta{
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  .job-right{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+
+  /* pill badges */
+  .pill{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius: 999px;
+    font-weight:600;
+    font-size:13px;
+    border: 1px solid rgba(11,23,30,0.02);
+  }
+  .pill.green{
+    background: var(--pill-green-bg);
+    color: var(--pill-green-text);
+  }
+  .pill.blue{
+    background: var(--pill-blue-bg);
+    color: var(--pill-blue-text);
+  }
+
+  /* small footer text inside card */
+  .job-card .meta-row{
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+
+  /* responsive */
+  @media (max-width:900px){
+    .job-right{
+      flex-direction:column;
+      align-items:flex-end;
+    }
+  }
+</style>
+</head>
+<body>
+  <header class="topbar" role="banner">
+    <div class="wrap">
+      <h1>RCC Merchandiser Openings</h1>
+      <p>Jell-on · 39 stores · 50 open positions · 14 candidates in process · 14 from Jell-on</p>
+    </div>
+  </header>
+
+  <main class="wrap" role="main">
+    <div class="content">
+      <div class="main">
+        <div class="callout" role="note">
+          <div class="title">Candidate application link</div>
+          <div>Share this with your candidates so they fill in the full application themselves — it lands in My submissions as a draft for you to review, then Submit to RCC.</div>
+          <div class="controls">
+            <button class="btn btn-primary">APPLICATION — Copy link</button>
+            <button class="btn btn-ghost">Preview</button>
+          </div>
+        </div>
+
+        <div class="tabs" role="tablist">
+          <div class="tab active">Open positions (50)</div>
+          <div class="tab">My submissions (24)</div>
+        </div>
+
+        <div class="job-list">
+          <!-- job card (repeat) -->
+          <div class="job-card">
+            <div class="job-left">
+              <div class="job-title">Gaisano Mall Davao</div>
+              <div class="job-meta">Davao · MIN · Company-Op — Posted Jun 18 · Open</div>
+            </div>
+            <div class="job-right">
+              <div class="meta-row" aria-hidden="true">
+                <div class="pill green">1 shortfall</div>
+                <div style="width:8px"></div>
+                <div class="pill blue">0 in review</div>
+              </div>
+              <button class="btn btn-primary" style="padding:10px 18px; border-radius:8px;">Submit a candidate</button>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-left">
+              <div class="job-title">Landmark Makati</div>
+              <div class="job-meta">Makati · GMA · Concession — Posted Jun 18 · Open</div>
+            </div>
+            <div class="job-right">
+              <div class="meta-row" aria-hidden="true">
+                <div class="pill green">1 shortfall</div>
+                <div style="width:8px"></div>
+                <div class="pill blue">1 in review · 1 Jell-on</div>
+              </div>
+              <button class="btn btn-primary" style="padding:10px 18px; border-radius:8px;">Submit a candidate</button>
+            </div>
+          </div>
+
+          <!-- add more cards as needed -->
+        </div>
+      </div>
+
+      <!-- optional right-hand column (filters, stats) -->
+      <aside style="width:260px">
+        <!-- you can put filters or stats here; screenshot shows mostly empty right gutter -->
+      </aside>
+    </div>
+  </main>
+
+<script>
+  // tiny example: copy link action - replace '#copyThisLink' with your actual generated link
+  document.querySelectorAll('.btn-primary')[0].addEventListener('click', function(){
+    const link = location.href; // or the real application link
+    navigator.clipboard?.writeText(link).then(()=>{
+      alert('Link copied to clipboard');
+    }).catch(()=> alert('Copy failed — use Ctrl+C'));
+  });
+</script>
+</body>
+</html>
